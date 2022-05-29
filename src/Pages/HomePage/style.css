@@ -18,6 +18,7 @@
     background-size: auto;
     background-repeat: repeat;
     padding: 40px;
+    height: 100vh;
 }
 
 .hero {
@@ -30,7 +31,23 @@
 .branding{
     font-family: 'VT323', monospace;
     font-size: 55px;
-    text-shadow: -4px 0 #d93876, 0 4px #d93876, 4px 0 #d93876, 0 -4px #d93876;
+    text-shadow: -4px 0 white, 0 4px white, 4px 0 white, 0 -4px white;
     letter-spacing: 7px;
+    margin-top: 90px;
   
+}
+.gif {
+    -webkit-animation: mover 5s infinite  alternate;
+    animation: mover 5s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(80vw); }
+}
+@keyframes mover {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(80vw); }
+}
+.dog-running{
+    text-align: left;
 }
