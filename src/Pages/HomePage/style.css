@@ -1,0 +1,36 @@
+.searchfield {
+    margin: 0;
+    padding:10px;
+    display: list-item;
+    margin-left: 40px;
+}
+
+.header-container{
+    background: #d93876;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+.container{
+    background-color: #cccccc;
+    background-image:url(http://armyoftrolls.co.uk/wordpress/wp-content/uploads/2017/07/background_3-1.png);
+    background-size: auto;
+    background-repeat: repeat;
+    padding: 40px;
+}
+
+.hero {
+    display: flex; 
+}
+.logo{
+    width: 250px;
+
+}
+.branding{
+    font-family: 'VT323', monospace;
+    font-size: 55px;
+    text-shadow: -4px 0 #d93876, 0 4px #d93876, 4px 0 #d93876, 0 -4px #d93876;
+    letter-spacing: 7px;
+  
+}
