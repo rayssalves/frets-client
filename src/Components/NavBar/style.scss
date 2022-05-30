@@ -1,0 +1,27 @@
+.message-box{
+    width: 250px;
+}
+
+.nav-container{
+    background: #d93876;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+}
+.searchfield {
+    margin: 0;
+    padding:10px;
+    display: list-item;
+    margin-left: 40px;
+
+}
+.links{
+    text-decoration: none;
+        color: #fff;
+        @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #209cee, $border-inset: false);
+} 
+ul {
+    list-style-type: none;
+}
+
+

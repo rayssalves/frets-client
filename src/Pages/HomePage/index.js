@@ -1,16 +1,11 @@
 import React from "react";
+import NavBar from "../../Components/NavBar";
 import "./style.css";
 
 export default function HomePage() {
   return (
     <div>
-      <header className="header-container">
-        <input
-          className="searchfield text"
-          type="search"
-          placeholder="Search..."
-        ></input>
-      </header>
+      <NavBar />
       <div className="container">
         <div className="hero">
           <div>
