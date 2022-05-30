@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
@@ -12,7 +12,7 @@ export default function NavBar() {
             placeholder="Search..."
           ></input>
           <li>
-            <NavLink to="/" className="links">
+            <NavLink to="/" className="links pixel-borders pixel-box--primary">
               Home
             </NavLink>
           </li>

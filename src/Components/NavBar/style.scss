@@ -1,3 +1,5 @@
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
 .message-box{
     width: 250px;
 }
@@ -5,23 +7,23 @@
 .nav-container{
     background: #d93876;
     text-align: center;
-    padding: 20px 0;
+    padding: 5px 0;
     position: relative;
+    box-shadow: 8px 4px 4px black;
+
 }
 .searchfield {
     margin: 0;
     padding:10px;
-    display: list-item;
-    margin-left: 40px;
-
+    display: flex;
 }
 .links{
     text-decoration: none;
-        color: #fff;
-        @include pixel-box($corner-size: 1, $border-size: 4px, $background-color: #209cee, $border-inset: false);
+    font-family: 'VT323', monospace;
+    font-size: 40px;
+    letter-spacing: 6px;
+       
 } 
 ul {
     list-style-type: none;
 }
-
-
