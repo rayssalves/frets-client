@@ -13,17 +13,19 @@
 
 }
 .searchfield {
-    margin: 0;
-    padding:10px;
-    display: flex;
+    height: 50px;
 }
 .links{
     text-decoration: none;
     font-family: 'VT323', monospace;
     font-size: 40px;
     letter-spacing: 6px;
+    margin: 20px;
+    margin-left: 100px;
        
 } 
 ul {
     list-style-type: none;
+    display: flex;
+    align-items: center;
 }
