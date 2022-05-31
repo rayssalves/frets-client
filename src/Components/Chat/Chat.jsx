@@ -13,7 +13,9 @@ const socket = io("http://localhost:4000", {
     console.log(socket.id); 
   });
 
-  return <div>Hello world</div>;
+  return (
+    <div>Hello world</div>
+  )
 };
 
 

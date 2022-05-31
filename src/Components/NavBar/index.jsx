@@ -6,15 +6,25 @@ export default function NavBar() {
     <div className="navbar-container">
       <nav className="nav-container">
         <ul>
-          <input
-            className="searchfield text"
-            type="search"
-            placeholder="Search..."
-          ></input>
+        <img
+            className="logo"
+            src="/assets/logo frets.png"
+            alt="frets logo"
+            />
           <li>
             <NavLink to="/" className="links pixel-borders pixel-box--primary">
               Home
-            </NavLink>
+            </NavLink>  
+          </li>
+          <li>
+            <NavLink to="/" className="links pixel-borders pixel-box--primary">
+              Login
+            </NavLink>  
+          </li>
+          <li>
+            <NavLink to="/" className="links pixel-borders pixel-box--primary">
+              Profile
+            </NavLink>  
           </li>
         </ul>
       </nav>

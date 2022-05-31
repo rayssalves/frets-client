@@ -9,13 +9,6 @@ export default function HomePage() {
       <NavBar />
       <div className="container">
         <div className="hero">
-          <div>
-            <img
-              className="logo"
-              src="/assets/logo frets.png"
-              alt="frets logo"
-            />
-          </div>
           <h1 className="branding">
             A community to help pet owners to connect with pet lovers
           </h1>

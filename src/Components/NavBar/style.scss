@@ -12,20 +12,20 @@
     box-shadow: 8px 4px 4px black;
 
 }
-.searchfield {
-    height: 50px;
-}
 .links{
     text-decoration: none;
     font-family: 'VT323', monospace;
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 6px;
     margin: 20px;
-    margin-left: 100px;
-       
+    margin-left: 100px; 
 } 
 ul {
     list-style-type: none;
     display: flex;
     align-items: center;
+}
+.logo{
+    width: 170px;
+
 }

@@ -7,20 +7,12 @@
     height: 100vh;
 }
 
-.hero {
-    display: flex; 
-}
-.logo{
-    width: 250px;
-
-}
 .branding{
     font-family: 'VT323', monospace;
-    font-size: 55px;
+    font-size: 60px;
     text-shadow: -4px 0 white, 0 4px white, 4px 0 white, 0 -4px white;
     letter-spacing: 7px;
-    margin-top: 90px;
-  
+
 }
 .gif {
     -webkit-animation: mover 5s infinite  alternate;
