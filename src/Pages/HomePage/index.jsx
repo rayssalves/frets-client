@@ -1,7 +1,8 @@
 import React from "react";
 import NavBar from "../../Components/NavBar";
+import Chat from '../../Components/Chat'
 import "./style.css";
-import Chat from '../../Components/Chat/Chat'
+
 
 export default function HomePage() {
   return (
@@ -16,8 +17,8 @@ export default function HomePage() {
         <div className="dog-running">
           <img className="gif" src="/assets/dog.gif" alt="dog running gif" />
         </div>
+        <Chat />
       </div>
-      <Chat />
     </div>
   );
 }
