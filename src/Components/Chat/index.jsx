@@ -11,7 +11,6 @@ const socket = io.connect("http://localhost:4000", {
   }
 });
 
-
 export default function Chat () {
   //Room State
 const [room, setRoom] = useState("");
@@ -29,7 +28,7 @@ const sendMessage = async () => {
   if (sendMessage !==""){
     const messageData = {
       room: room,
-      author: "user",
+      author: "user/change it after login",
       message: currentMessage,
       time:
         new Date(Date.now()).getHours() +
@@ -110,27 +109,10 @@ useEffect(() => {
             }}
           />
           <button type="button" onClick={joinRoom()}> Join Room</button>
+  
         <button type="button"className=" send pixel-borders pixel-box--success" onClick={() => sendMessage()}> Send Message</button>
         <button type="button" class="close pixel-borders pixel-box--error" onClick={() => closeForm()}>Close</button>
       </div>
-        {/* <input
-            placeholder="Room Number..."
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
-          />
-          <button type="button" onClick={joinRoom()}> Join Room</button>
-          {visualized}
-          <textarea
-            placeholder="Message..."
-            onChange={(event) => {
-              setMessage(event.target.value);
-            }}
-          /> */}
-          
-          {/* <button type="button"className=" send pixel-borders pixel-box--success" onClick={() => sendMessage()}> Send Message</button>
-          <button type="button" class="close pixel-borders pixel-box--error" onClick={() => closeForm()}>Close</button> */}
-      
         </form>
       </div>
       </div>
@@ -140,4 +122,3 @@ useEffect(() => {
 
 };
 
-{/* <button onClick={() => socket.emit("message", "Hey server I`m here!")}>Hello server</button> */}

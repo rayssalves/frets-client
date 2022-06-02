@@ -1,5 +1,6 @@
 import "./style.scss";
 import { NavLink } from "react-router-dom";
+ import ModalLogin from "../Login Modal"
 
 export default function NavBar() {
   return (
@@ -17,9 +18,7 @@ export default function NavBar() {
             </NavLink>  
           </li>
           <li>
-            <NavLink to="/" className="links pixel-borders pixel-box--primary">
-              Login
-            </NavLink>  
+            <ModalLogin/> 
           </li>
           <li>
             <NavLink to="/" className="links pixel-borders pixel-box--primary">
