@@ -5,14 +5,18 @@ import { selectToken } from "./selectors";
 
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
 
-export const signUp = (name, email, password, isOwner) => {
+export const signUp = (name, email, password,city,isOwner,description,imageUrl,pet) => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, {
         name,
         email,
         password,
+        city,
         isOwner,
+        imageUrl,
+        description,
+        pet
       });
 
       dispatch(
