@@ -4,7 +4,7 @@ import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
-
+import { fetchUsers } from "./thunk";
 
 export const signUp = (name, email, password,city,isOwner,description,imageUrl,pet) => {
   return async (dispatch, getState) => {
@@ -25,6 +25,7 @@ export const signUp = (name, email, password,city,isOwner,description,imageUrl,p
       );
       dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());
+      dispatch(fetchUsers)
  
     } catch (error) {
       if (error.response) {

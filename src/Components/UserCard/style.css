@@ -1,0 +1,34 @@
+.userCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 300px;
+    background-color:   #FF9B49;
+    font-family: 'VT323', monospace;
+    transition: transform .2s;
+    flex: 0 0 29%;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    font-size: 20px;
+  }
+
+  .userCard img {
+    max-width: 300px;
+}
+.userCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 17px -7px #000, 5px 5px 15px 5px #0000;
+    border-radius: 20px;
+  }
+
+.petCards {
+    color: white;
+    border-radius: 20px;
+    background-color: #36AAE4;
+}
+
+.userCard button{
+  font-size: 15px;
+}

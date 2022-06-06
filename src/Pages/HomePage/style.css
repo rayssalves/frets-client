@@ -15,12 +15,18 @@ body{
 }
 @-webkit-keyframes mover {
     0% { transform: translateX(0); }
-    100% { transform: translateX(70vw); }
+    100% { transform: translateX(50vw); }
 }
 @keyframes mover {
     0% { transform: translateX(0); }
-    100% { transform: translateX(60vw); }
+    100% { transform: translateX(50vw); }
 }
 .dog-running{
     text-align: left;
+}
+
+.userList{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
