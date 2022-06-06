@@ -5,8 +5,7 @@
 
 .nav-container{
     background: #d93876;
-    text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     position: relative;
     box-shadow: 8px 4px 4px black;
 
@@ -14,10 +13,9 @@
 .links{
     text-decoration: none;
     font-family: 'VT323', monospace;
-    font-size: 30px;
+    font-size: 20px;
     letter-spacing: 6px;
     margin: 20px;
-    margin-left: 100px; 
 } 
 ul {
     list-style-type: none;
@@ -25,6 +23,12 @@ ul {
     align-items: center;
 }
 .logo{
-    width: 170px;
+    padding-top: 3px;
+    margin-left: 5px;
+    width: 130px;
+    float: left;
 
+}
+.loginOut{
+    margin-left: auto;
 }

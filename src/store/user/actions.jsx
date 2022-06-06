@@ -1,9 +1,10 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 import { selectToken } from "./selectors";
-
-
+import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
+import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
+
 
 export const signUp = (name, email, password,city,isOwner,description,imageUrl,pet) => {
   return async (dispatch, getState) => {
@@ -22,16 +23,30 @@ export const signUp = (name, email, password,city,isOwner,description,imageUrl,p
       dispatch(
         loginSuccess({ token: response.data.token, user: response.data.user })
       );
+      dispatch(showMessageWithTimeout("success", true, "account created"));
+      dispatch(appDoneLoading());
  
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
-
-    
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.response.data.message,
+          })
+        );
       } else {
         console.log(error.message);
-      
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.message,
+          })
+        );
       }
+      dispatch(appDoneLoading());
     }
   };
 };
@@ -48,17 +63,33 @@ export const login = (email, password) => {
       dispatch(
         loginSuccess({ token: response.data.token, user: response.data.user })
       );
+      dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+      dispatch(appDoneLoading());
      
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.response.data.message,
+          })
+        );
       } else {
         console.log(error.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.response.data.message,
+          })
+        );
       }
+      dispatch(appDoneLoading());
     }
   };
 };
-
 export const getUserWithStoredToken = () => {
   return async (dispatch, getState) => {
     // get token from the state
@@ -66,7 +97,7 @@ export const getUserWithStoredToken = () => {
 
     // if we have no token, stop
     if (token === null) return;
-
+    dispatch(appLoading());
     try {
       // if we do have a token,
       // check wether it is still valid or if it is expired
@@ -76,6 +107,7 @@ export const getUserWithStoredToken = () => {
 
       // token is still valid
       dispatch(tokenStillValid({ user: response.data }));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);
@@ -85,6 +117,7 @@ export const getUserWithStoredToken = () => {
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
+      dispatch(appDoneLoading());
     }
   };
 };
