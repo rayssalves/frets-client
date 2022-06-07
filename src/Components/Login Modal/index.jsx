@@ -84,12 +84,12 @@ export default function ModalLogin() {
     console.log(pet);
     dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,imageUrl, pet));
 
-    setEmailSignUp("");
-    setPasswordSignUp("");
-    setNameSignUp("");
-    setCity("")
-    setImageUrl("")
-    setDescription("")
+    // setEmailSignUp("");
+    // setPasswordSignUp("");
+    // setNameSignUp("");
+    // setCity("")
+    // setImageUrl("")
+    // setDescription("")
   }
   
   return (

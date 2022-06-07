@@ -6,7 +6,7 @@ import {
   usersFetched,
 } from "./slice";
 
-export async function fetchUsers(dispatch, getState) {
+export async function fetchUsers(dispatch, userId) {
   try {
     dispatch(startLoading());
     const response = await axios.get("http://localhost:4000/user");

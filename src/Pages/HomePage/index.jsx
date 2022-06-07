@@ -4,7 +4,7 @@ import Chat from '../../Components/Chat'
 import UserCard from '../../Components/UserCard'
 import { useEffect } from "react";
 import { useSelector, useDispatch} from "react-redux";
-import { selectAllUsers } from "../../store/user/selectors";
+import { selectAllUsers, selectUser } from "../../store/user/selectors";
 import { fetchUsers } from "../../store/user/thunk";
 import "./style.css";
 
@@ -12,6 +12,7 @@ import "./style.css";
 export default function HomePage() {
 
 const dispatch = useDispatch();
+const user = useSelector(selectUser);
 const users = useSelector(selectAllUsers);
 
 useEffect(() => {
@@ -46,7 +47,7 @@ useEffect(() => {
           );
         })}
        </div>
-        <Chat />
+        {user && <Chat userId={user.id}/>}
       </div>
     </div>
   );

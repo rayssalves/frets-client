@@ -1,19 +1,30 @@
 import React from "react";
 import PetCard from '../../Components/PetCard';
 import { selectToken } from "../../store/user/selectors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MuiRating from "../../Components/MuiRating"
+import {joinRoom, setReceiver, resetChat} from "../../store/chat/slice"
+import * as uuid from "uuid"
 import "./style.css";
 
 // import { Link } from "react-router-dom";
 
-export default function UserCard ({ name, city, imageUrl, description,rating,owners}) {
+
+export default function UserCard ({ id, name, city, imageUrl, description,rating,owners}) {
     const token = useSelector(selectToken);
+    const dispatch = useDispatch();
+    const openChat = (userId) => {
+        const id = uuid.v4();
+        dispatch(joinRoom(id));
+        dispatch(setReceiver(userId));
+        dispatch(resetChat());
+    }
+
     return (
         <div className="userCard">
         <img className="details-img" src={imageUrl} alt="user" />
         <h2>{owners.length > 0 ? "Owner:" : "Frets:"} {name}</h2>
-        <p>{city}</p>
+        <p>{city}</p>  
         <p>{description}</p> 
         <MuiRating ratingValue={rating}/>
         {/* <p>Rating: {rating}</p> */}
@@ -39,7 +50,7 @@ export default function UserCard ({ name, city, imageUrl, description,rating,own
             }) : (""))
             }) : ("")}
         {token && 
-            <button className="pixel-borders pixel-borders--2-inset">
+            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id)}>
                 Chat
                 {/* <Link to={`/details/${id}`}>See Details</Link> */}
             </button>
