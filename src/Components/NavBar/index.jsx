@@ -4,7 +4,6 @@ import ModalLogin from "../Login Modal"
 import { useSelector } from "react-redux";
 import LoggedIn from "./LoggedIn";
 import { selectUser } from "../../store/user/selectors";
-
 import { selectToken } from "../../store/user/selectors";
 
  export default function NavBar() {
@@ -30,7 +29,7 @@ import { selectToken } from "../../store/user/selectors";
           </li>
           <li> 
              {token && user ? (
-             <NavLink to="/" className="links pixel-borders pixel-box--primary">
+             <NavLink to="/profile" className="links pixel-borders pixel-box--primary">
              Profile
            </NavLink> 
           ) : (

@@ -58,6 +58,8 @@ const sendMessage = async () => {
     dispatch(sendChatMessage(messageData.room, messageData.author, messageData.receiver, messageData.message, messageData.time));
     setMessageList((list) => [...list, messageData]);
     setCurrentMessage("");
+
+    // setMessageList([...messageList, messageData]);
   }
   };
   
@@ -80,7 +82,7 @@ const closeForm = () => {
 //     });
 //     }, [socket]);
   useEffect(() => {
-      dispatch(fetchMessages(userId.userId));
+      dispatch(fetchMessages());
     }, [dispatch]);
 
   return (

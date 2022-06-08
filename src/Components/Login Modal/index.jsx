@@ -47,7 +47,7 @@ export default function ModalLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [city, setCity] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+
   const [isOwner, setIsOwner] = useState(false);
   const [description, setDescription] = useState("");
   const [nameSignUp, setNameSignUp] = useState("");
@@ -82,16 +82,34 @@ export default function ModalLogin() {
   function submitFormSignUp(event) {
     event.preventDefault();
     console.log(pet);
-    dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,imageUrl, pet));
-
-    // setEmailSignUp("");
-    // setPasswordSignUp("");
-    // setNameSignUp("");
-    // setCity("")
-    // setImageUrl("")
-    // setDescription("")
+    dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,image, pet));
   }
+ //Cloudinary image
+  const [image, setImage] = useState("");
   
+  const uploadImage = async(e) => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append("file", files[0])
+    //first parameter is always upload_preset, second is the name of the preset
+    data.append('upload_preset', "ryzmmtyg")
+    
+    //post request to Cloudinary, remember to change to your own link
+    const res = await fetch("https://api.cloudinary.com/v1_1/dcllwpbxp/image/upload", 
+    {
+      method: "POST",
+      body: data
+    }
+    );
+   // we can use Axios(first import it) request instead of Fetch
+    // axios.post("https://api.cloudinary.com/v1_1/dwpyp7i9h/image/upload", data);
+    const file = await res.json()
+    console.log("file", file) //check if you are getting the url back
+    setImage(file.url) //put the url in local state, next step you can send it to the backend
+  };
+  // Cloudinary part
+
+
   return (
     <div>
       <button className="links pixel-borders pixel-box--primary" onClick={handleOpen}>Login</button>
@@ -190,17 +208,14 @@ export default function ModalLogin() {
           />
         </Form.Group>
         </Form.Group>
+{/* uploadImage*/}
+      <br/>
+      <input type="file" onChange={uploadImage}/>
+      <div>
+        <img style={{width:150,height:150}}src={image ? image : "https://www.housesitmatch.com/wp-content/themes/petsitter/images/job-placeholder.gif"} alt="user-img"/>
+        {image ? <title style={{fontSize: 20}}>Succesfully uploaded!</title> : ""}
+      </div>
 
-        <Form.Group controlId="formBasicImage">
-          <Form.Label><strong>Upload your image</strong></Form.Label>
-          <Form.Control
-            value={imageUrl}
-            onChange={(event) => setImageUrl(event.target.value)}
-            type="text"
-            placeholder="Enter image"
-            required
-          />
-        </Form.Group>
         <Form.Group controlId="formBasicDescription">
 
           <Form.Label><strong>Add Description</strong></Form.Label>

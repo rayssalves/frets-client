@@ -5,13 +5,14 @@ import {
   messagesFetched,
 } from "./slice";
 
-export const fetchMessages = userId => async dispatch => {
+export const fetchMessages = () => async (dispatch,getState)=> {
   try {
-      console.log('USER ID: ', userId)
+    const { token } = getState().user;
+      console.log('USER ID: ', token)
     const response = await axios.get("http://localhost:4000/chat", {
-        params: {
-          userId: userId
-        }
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
     console.log("response", response);
     const messages = response.data;

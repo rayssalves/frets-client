@@ -43,6 +43,7 @@ useEffect(() => {
                 description={user.description}
                 rating={user.rating}
                 owners={user.owners}
+                isFromProfile={false}
               />
           );
         })}
