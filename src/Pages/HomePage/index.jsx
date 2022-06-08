@@ -12,7 +12,7 @@ import "./style.css";
 export default function HomePage() {
 
 const dispatch = useDispatch();
-const user = useSelector(selectUser);
+const currentUser = useSelector(selectUser);
 const users = useSelector(selectAllUsers);
 
 useEffect(() => {
@@ -33,6 +33,7 @@ useEffect(() => {
         </div>
        <div className="userList">
        {users.map((user) => {
+         if (!currentUser || user.id !== currentUser.id) {
           return (
               <UserCard
                 key={user.id}
@@ -46,9 +47,11 @@ useEffect(() => {
                 isFromProfile={false}
               />
           );
+         }
+         return "";
         })}
        </div>
-        {user && <Chat userId={user.id}/>}
+        {currentUser && <Chat userId={currentUser.id}/>}
       </div>
     </div>
   );

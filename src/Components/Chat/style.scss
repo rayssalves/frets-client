@@ -1,15 +1,30 @@
 
 /* Button used to open the chat form - fixed at the bottom of the page */
+.chat-title {
+  padding: 10px;
+  background-color: #36AAE4;
+}
+.message-container {
+  max-height: 600px;
+  div:first-child {
+    max-height: 600px;
+  }
+}
+
+.message-meta {
+  padding-right: 5px;
+  padding-left: 5px;
+}
 .open-button {
-    background-color: #555;
-    color: white;
+    background-color:  #478589 ;
+    color: black;
     padding: 16px 20px;
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.9;
     position: fixed;
     bottom: 23px;
-    right: 28px;
-    width: 280px;
+    right: 20px;
+    width: 210px;
     font-family: 'VT323', monospace;
     font-size: 40px;
   }
@@ -25,8 +40,7 @@
   
   /* Add styles to the form container */
   .form-container {
-    max-width: 300px;
-    padding: 10px;
+    width: 500px;
     background-color: white;
     font-family: 'VT323', monospace;
   }
@@ -41,6 +55,7 @@
     resize: none;
     min-height: 200px;
     font-family: 'VT323', monospace;
+    
   }
   
   /* When the textarea gets focus, do something */
@@ -68,4 +83,48 @@
     font-family: 'VT323', monospace;
     font-size: 20px;
 }
+.chat-input{
+    width: 75%;
+    height: 80px;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 10px;
+    resize: none;
+}
 
+.chat-body {
+  padding-left: 10px;
+}
+
+.chat-footer {
+  padding: 10px;
+}
+
+#you, #other {
+  max-width: 340px;
+  overflow-wrap: anywhere;
+  padding: 1px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+}
+
+#you {
+  #time {
+    text-align: left;
+  }
+}
+
+#other {
+  background-color: #bababa;
+  margin-left: auto;
+  margin-right: 20px;
+  #time {
+    text-align: right;
+  }
+}
+
+.message-content {
+  font-size: 1.2rem;
+}

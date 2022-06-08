@@ -4,7 +4,7 @@ import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 import { loginSuccess, logOut, tokenStillValid } from "./slice";
-import { fetchUsers } from "./thunk";
+import { fetchUsers, fetchProfile } from "./thunk";
 
 export const signUp = (name, email, password,city,isOwner,description,imageUrl,pet) => {
   return async (dispatch, getState) => {
@@ -118,6 +118,52 @@ export const getUserWithStoredToken = () => {
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const editProfile = (name, email ,city,isOwner,description,imageUrl,pet) => {
+  return async (dispatch, getState) => {
+    try {
+      const { token } = getState().user;
+      const response = await axios.patch(`${apiUrl}/user/edit`, {
+        name,
+        email,
+        city,
+        isOwner,
+        imageUrl,
+        description,
+        pet
+      }, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      dispatch(fetchProfile);
+      dispatch(appDoneLoading()); 
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.response.data.message,
+          })
+        );
+      } else {
+        console.log(error.message);
+        dispatch(
+          setMessage({
+            variant: "danger",
+            dismissable: true,
+            text: error.message,
+          })
+        );
+      }
       dispatch(appDoneLoading());
     }
   };

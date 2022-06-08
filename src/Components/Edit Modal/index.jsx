@@ -4,10 +4,10 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { signUp } from "../../store/user/actions";
-import { useDispatch} from "react-redux";
+import { editProfile } from "../../store/user/actions";
+import { useDispatch,useSelector } from "react-redux";
 import { Col } from "react-bootstrap";
-
+import { selectUser } from "../../store/user/selectors";
 
 const style = {
     position: 'absolute',
@@ -36,31 +36,30 @@ const style = {
   
   };
   
-
 export default function EditModal() {
 
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const user = useSelector(selectUser);
         
-    const [city, setCity] = useState("");
-    const [isOwner, setIsOwner] = useState(false);
-    const [description, setDescription] = useState("");
-    const [nameSignUp, setNameSignUp] = useState("");
-    const [emailSignUp, setEmailSignUp] = useState("");
-    const [passwordSignUp, setPasswordSignUp] = useState("");
-    const [pet, setPet] = useState({});
+    const [city, setCity] = useState(user.city);
+    const [isOwner, setIsOwner] = useState(user.owner);
+    const [description, setDescription] = useState(user.description);
+    const [nameSignUp, setNameSignUp] = useState(user.name);
+    const [emailSignUp, setEmailSignUp] = useState(user.email);
+    const [pet, setPet] = useState(user.owners[0].pets[0]);
 
 
-    function submitFormSignUp(event) {
+    function submitEditProfile(event) {
         event.preventDefault();
         console.log(pet);
-        dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,image, pet));
+        dispatch(editProfile(nameSignUp, emailSignUp,city,isOwner,description,image, pet));
       }
        
       //Cloudinary image
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(user.imageUrl);
   
     const uploadImage = async(e) => {
     const files = e.target.files
@@ -130,17 +129,6 @@ export default function EditModal() {
             placeholder="Enter city"
             required
           /> 
-          
-          <Form.Group controlId="formBasicPassword">
-          <Form.Label><strong>Password</strong></Form.Label>
-          <Form.Control
-            value={passwordSignUp}
-            onChange={(event) => setPasswordSignUp(event.target.value)}
-            type="password"
-            placeholder="Password"
-            required
-          />
-        </Form.Group>
         </Form.Group>
 {/* uploadImage*/}
       <br/>
@@ -170,6 +158,7 @@ export default function EditModal() {
             value={isOwner}
             onChange={(event) => setIsOwner(event.target.checked)}
             type="checkbox"
+            checked={isOwner}
           />
         </Form.Group> 
 
@@ -214,6 +203,7 @@ export default function EditModal() {
               value={pet.available}
               onChange={(event) => setPet({...pet, available: event.target.checked})}
               type='switch'
+              checked={pet.available}
               required
             />
             </Form.Group>
@@ -222,7 +212,7 @@ export default function EditModal() {
             <Form.Label><strong>Specie</strong></Form.Label>
             <Form.Control size="sm"
               as="select"
-              value={pet.specie}
+              value={pet.speciesId}
               onChange={(event) => setPet({...pet, specie: event.target.value})}
               placeholder='Specie'
               required
@@ -238,7 +228,7 @@ export default function EditModal() {
           </div>   
         }
         <Form.Group className="mt-5">
-          <Button variant="primary" type="submit" onClick={submitFormSignUp}>
+          <Button variant="primary" type="submit" onClick={submitEditProfile}>
             Edit
           </Button>
         </Form.Group>

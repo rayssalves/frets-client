@@ -21,7 +21,7 @@ export const chatSlice = createSlice({
         state.messages = null;
     },
     messagesFetched: (state, action) => {
-        state.room = action.payload[0].room
+        state.room = action.payload[action.payload.length-1].room
         state.messages = action.payload;
       },
   },

@@ -22,7 +22,6 @@ export async function fetchUsers(dispatch, userId) {
 export const fetchProfile = () => async (dispatch,getState)=> {
   try {
     const { token } = getState().user;
-      console.log('USER ID: ', token)
     const response = await axios.get("http://localhost:4000/profile", {
         headers: {
           Authorization: `Bearer ${token}`,

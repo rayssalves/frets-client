@@ -27,7 +27,7 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
     return (
         <div className="userCard">
         <img className="details-img" src={imageUrl} alt="user" />
-        <h2>{owners.length > 0 ? "Owner:" : "Frets:"} {name}</h2>
+        <h2>{owners?.length > 0 ? "Owner:" : "Frets:"} {name}</h2>
         <p>{city}</p>
         <a href={`https://www.google.com/maps/place/${city}`} target="_blank" rel="noreferrer"><LocationOnIcon/></a> 
         

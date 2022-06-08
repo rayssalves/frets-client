@@ -8,7 +8,6 @@ import {
 export const fetchMessages = () => async (dispatch,getState)=> {
   try {
     const { token } = getState().user;
-      console.log('USER ID: ', token)
     const response = await axios.get("http://localhost:4000/chat", {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -2,10 +2,12 @@ import { io } from "socket.io-client"
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { selectRoom, selectReceiver, selectMessages, selectAuthor } from "../../store/chat/selectors";
+import { selectRoom, selectReceiver, selectMessages} from "../../store/chat/selectors";
 import { selectUser } from "../../store/user/selectors";
 import { sendChatMessage } from "../../store/chat/actions";
 import { fetchMessages } from "../../store/chat/thunk";
+import SendIcon from '@mui/icons-material/Send';
+import MinimizeIcon from '@mui/icons-material/Minimize';
 import "./style.scss";
 
 //connection
@@ -54,7 +56,7 @@ const sendMessage = async () => {
     } 
     console.log(messageData)
   // socket.emit("send_message", { currentMessage, room });
-  // await socket.emit("send_message", messageData);
+    await socket.emit("send_message", messageData);
     dispatch(sendChatMessage(messageData.room, messageData.author, messageData.receiver, messageData.message, messageData.time));
     setMessageList((list) => [...list, messageData]);
     setCurrentMessage("");
@@ -76,13 +78,19 @@ const closeForm = () => {
     }
   }
 
+  
+
 // useEffect(() => {
 //   socket.on("receive_message", (data) => {
 //     setMessageList((list) => [...list, data]);
 //     });
 //     }, [socket]);
   useEffect(() => {
-      dispatch(fetchMessages());
+    socket.on("receive_message", (data) => {
+      console.log("HIT")
+      setMessageList((list) => [...list, data]);
+      });
+    dispatch(fetchMessages());
     }, [dispatch]);
 
   return (
@@ -90,23 +98,21 @@ const closeForm = () => {
     <button className="open-button pixel-borders pixel-borders--2-inset" onClick={() => openForm()}>Frets Chat</button>
     <div className="chat-popup"  id="myForm">
       <form className="form-container">
-        <h1>Chat</h1>
+        <h1 className="chat-title">Chat  <MinimizeIcon style={{ color: "#FF9B49",fontSize:35, float: "right"}} onClick={() => closeForm()}/></h1>
         <div className="chat-body">
         <ScrollToBottom className="message-container">
           {messages && messages.map((messageContent) => {
             return (
               <div
                 className="message"
-                // id={username === messageContent.author ? "you" : "other"}
-                id="you"
+                id={messageContent.receiver !== user.id ? "you" : "other"}
               >
                 <div>
-                  <div className="message-content">
-                    <p>{messageContent.message}</p>
-                  </div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
+                  </div>
+                  <div className="message-content">
+                    <p>{messageContent.message}</p>
                   </div>
                 </div>
               </div>
@@ -116,19 +122,18 @@ const closeForm = () => {
             return (
               <div
                 className="message"
-                // id={username === messageContent.author ? "you" : "other"}
-                id="you"
+                id={messageContent.receiver !== user.id ? "you" : "other"}
               >
                 <div>
+                <div className="message-meta">
+                    <p id="time">{messageContent.time}</p>
+                  </div>
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
-                  <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
-                  </div>
+                  
                 </div>
-              </div>
+              </div>  
             );
           })}
         </ScrollToBottom>
@@ -142,12 +147,16 @@ const closeForm = () => {
             setCurrentMessage(event.target.value);
           }}
           onKeyPress={(event) => {
-            event.key === "Enter" && sendMessage();
+            if (event.key === "Enter") {
+              event.preventDefault();
+              sendMessage();
+            }
           }}
+          className="chat-input"
         />
-  
-        <button type="button"className=" send pixel-borders pixel-box--success" onClick={() => sendMessage()}> Send Message</button>
-        <button type="button" class="close pixel-borders pixel-box--error" onClick={() => closeForm()}>Close</button>
+
+      <SendIcon style={{ color: "#FF9B49",fontSize:40}} onClick={() => sendMessage()}/>
+      <br/>
       </div>
         </form>
       </div>

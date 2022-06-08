@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { fetchProfile } from "../../store/user/thunk";
+import "./style.css";
 
 export default function Profile(){
 const dispatch = useDispatch();
@@ -19,7 +20,7 @@ useEffect(() => {
 return(
     <div>
     <NavBar/>
-    <h1>to na profile</h1>
+
        <div className="userList">
       {user && <UserCard
                 key={user.id}
