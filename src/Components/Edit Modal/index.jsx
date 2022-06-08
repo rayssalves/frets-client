@@ -1,93 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { login, signUp } from "../../store/user/actions";
-import { selectToken } from "../../store/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate} from "react-router-dom";
+import { signUp } from "../../store/user/actions";
+import { useDispatch} from "react-redux";
 import { Col } from "react-bootstrap";
 
 
-
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',  
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  maxHeight: '90%',
-  overflow: 'auto',
-  "&::before": {
-    content: '""',
-    background: `url('${process.env.PUBLIC_URL}/assets/backgrounddog.webp')`,
-    backgroundSize: 'contain',
     position: 'absolute',
-    width: '100%',
-    height: '100%',
-    opacity: '0.3',
-    zIndex: '-1',
-    left: '0',
-    top: '0'
-  }
-
-};
-
-export default function ModalLogin() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [city, setCity] = useState("");
-
-  const [isOwner, setIsOwner] = useState(false);
-  const [description, setDescription] = useState("");
-  const [nameSignUp, setNameSignUp] = useState("");
-  const [emailSignUp, setEmailSignUp] = useState("");
-  const [passwordSignUp, setPasswordSignUp] = useState("");
-
-  //pet
-  const [pet, setPet] = useState({});
-
-  const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const navigate = useNavigate();
-
-  const [displayOnRegister, setDisplayOnRegister] = useState(false)
-
-  useEffect(() => {
-    if (token !== null) {
-      navigate("/");
+    top: '50%',
+    left: '50%',  
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    maxHeight: '90%',
+    overflow: 'auto',
+    "&::before": {
+      content: '""',
+      background: `url('${process.env.PUBLIC_URL}/assets/backgrounddog.webp')`,
+      backgroundSize: 'contain',
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      opacity: '0.3',
+      zIndex: '-1',
+      left: '0',
+      top: '0'
     }
-  }, [token, navigate]);
-
-  function submitFormLogin(event) {
-    console.log("hi");
-    event.preventDefault();
-
-    dispatch(login(email, password));
-
-    setEmail("");
-    setPassword("");
-  }
-
-  function submitFormSignUp(event) {
-    event.preventDefault();
-    console.log(pet);
-    dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,image, pet));
-  }
- //Cloudinary image
-  const [image, setImage] = useState("");
   
-  const uploadImage = async(e) => {
+  };
+  
+
+export default function EditModal() {
+
+    const dispatch = useDispatch();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+        
+    const [city, setCity] = useState("");
+    const [isOwner, setIsOwner] = useState(false);
+    const [description, setDescription] = useState("");
+    const [nameSignUp, setNameSignUp] = useState("");
+    const [emailSignUp, setEmailSignUp] = useState("");
+    const [passwordSignUp, setPasswordSignUp] = useState("");
+    const [pet, setPet] = useState({});
+
+
+    function submitFormSignUp(event) {
+        event.preventDefault();
+        console.log(pet);
+        dispatch(signUp(nameSignUp, emailSignUp, passwordSignUp,city,isOwner,description,image, pet));
+      }
+       
+      //Cloudinary image
+    const [image, setImage] = useState("");
+  
+    const uploadImage = async(e) => {
     const files = e.target.files
     const data = new FormData()
     data.append("file", files[0])
@@ -109,62 +84,21 @@ export default function ModalLogin() {
   };
   // Cloudinary part
 
-
-  return (
+    return(
     <div>
-      <button className="links pixel-borders pixel-box--primary" onClick={handleOpen}>Login</button>
-      <Modal 
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      <button className="pixel-borders pixel-borders--2-inset"  onClick={handleOpen}>Edit</button>
+      <Modal
+       open={open}
+       onClose={handleClose}
+       aria-labelledby="modal-modal-title"
+       aria-describedby="modal-modal-description"
       >
-        {//se displayOnRegister for negativo entao eu mostro o formulario pra logar
-        !displayOnRegister ?
-        <Box sx={style}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Form as={Col} md={{ span: 6, offset: 3 }} className='mt-5'>
-              <h1 className='mt-5 mb-5'>Login</h1>
-              <Form.Group controlId='formBasicEmail'>
-                <Form.Label><strong> Email address</strong></Form.Label>
-                <Form.Control
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  type='email'
-                  placeholder='Enter email'
-                  required
-                />
-              </Form.Group>
 
-              <Form.Group controlId='formBasicPassword'>
-                <Form.Label><strong>Password</strong></Form.Label>
-                <Form.Control
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  type='password'
-                  placeholder='Password'
-                  required
-                />
-              </Form.Group>
-              <Form.Group className='mt-5'>
-                <Button variant='primary' type='submit' onClick={submitFormLogin}>
-                  Log in
-                </Button>
-              </Form.Group>
-              <br/>
-              <Button onClick={() => setDisplayOnRegister(true)} style={{ textAlign: "center" }}>
-                Click here to register
-              </Button>
-            </Form>
-          </Typography>
-        </Box>
-        //se displayOnRegister is positive I show form to register 
-        : 
-        <Box sx={style}>
+      <Box sx={style}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             
           <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <h1 className="mt-5 mb-5">Signup</h1>
+        <h1 className="mt-5 mb-5">Edit your Profile</h1>
         <Form.Group controlId="formBasicName">
           <Form.Label><strong>Name</strong></Form.Label>
           <Form.Control
@@ -305,17 +239,15 @@ export default function ModalLogin() {
         }
         <Form.Group className="mt-5">
           <Button variant="primary" type="submit" onClick={submitFormSignUp}>
-            Sign up
+            Edit
           </Button>
         </Form.Group>
         <br/>
-        <Button onClick={() => setDisplayOnRegister(false)}>Click here to log in</Button>
       </Form>
 
           </Typography>
         </Box>
-      }
       </Modal>
     </div>
-  );
+    )
 }

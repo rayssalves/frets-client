@@ -6,12 +6,15 @@ import MuiRating from "../../Components/MuiRating"
 import {joinRoom, setReceiver, resetChat} from "../../store/chat/slice"
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import * as uuid from "uuid"
+import EditModal from "../Edit Modal";
 import "./style.css";
 
 // import { Link } from "react-router-dom";
 
 
 export default function UserCard ({ id, name, city, imageUrl, description,rating,owners, isFromProfile}) {
+  
+
     const token = useSelector(selectToken);
     const dispatch = useDispatch();
     const openChat = (userId) => {
@@ -55,15 +58,12 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
         {token && !isFromProfile ?
             <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id)}>
                 Chat
-                {/* <Link to={`/details/${id}`}>See Details</Link> */}
+               
             </button> : ""
         }
 
         {token && isFromProfile ?
-            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id)}>
-                Edit
-                {/* <Link to={`/details/${id}`}>See Details</Link> */}
-            </button> : ""
+            <EditModal/> : ""
         }
         </div>
     );
