@@ -49,6 +49,7 @@ const sendMessage = async () => {
       author: user.id,
       receiver: setReceiver(),
       message: currentMessage,
+      authorImage: user.imageUrl,
       time:
         new Date(Date.now()).getHours() +
         ":" +
@@ -78,8 +79,6 @@ const closeForm = () => {
     }
   }
 
-  
-
 // useEffect(() => {
 //   socket.on("receive_message", (data) => {
 //     setMessageList((list) => [...list, data]);
@@ -101,17 +100,16 @@ const closeForm = () => {
         <h1 className="chat-title">Chat  <MinimizeIcon style={{ color: "#FF9B49",fontSize:35, float: "right"}} onClick={() => closeForm()}/></h1>
         <div className="chat-body">
         <ScrollToBottom className="message-container">
+          
           {messages && messages.map((messageContent) => {
             return (
-              <div
-                className="message"
-                id={messageContent.receiver !== user.id ? "you" : "other"}
-              >
+              <div className="message" id={messageContent.receiver !== user.id ? "you" : "other"}>
                 <div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
                   </div>
                   <div className="message-content">
+                  {messageContent.authorImage && <img src={messageContent.authorImage} width={"80px"} alt={messageContent.author}/>}
                     <p>{messageContent.message}</p>
                   </div>
                 </div>
@@ -119,16 +117,15 @@ const closeForm = () => {
             );
           })}
           {messageList.map((messageContent) => {
-            return (
-              <div
-                className="message"
-                id={messageContent.receiver !== user.id ? "you" : "other"}
-              >
+           
+           return (
+              <div className="message" id={messageContent.receiver !== user.id ? "you" : "other"} >
                 <div>
                 <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
                   </div>
                   <div className="message-content">
+                  {messageContent.authorImage && <img src={messageContent.authorImage} width={"80px"} alt={messageContent.author}/>}
                     <p>{messageContent.message}</p>
                   </div>
                   
@@ -136,6 +133,7 @@ const closeForm = () => {
               </div>  
             );
           })}
+
         </ScrollToBottom>
       </div>
       <div className="chat-footer">
@@ -154,7 +152,6 @@ const closeForm = () => {
           }}
           className="chat-input"
         />
-
       <SendIcon style={{ color: "#FF9B49",fontSize:40}} onClick={() => sendMessage()}/>
       <br/>
       </div>
@@ -166,4 +163,3 @@ const closeForm = () => {
   )
 
 };
-
