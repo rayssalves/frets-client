@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   message: null,
+  showChat: false,
 };
 
 export const appStateSlice = createSlice({
@@ -21,10 +22,13 @@ export const appStateSlice = createSlice({
     clearMessage: (state, action) => {
       state.message = null;
     },
+    toggleChat: (state) => {
+      state.showChat = !state.showChat
+    }
   },
 });
 
-export const { appLoading, appDoneLoading, setMessage, clearMessage } =
+export const { appLoading, appDoneLoading, setMessage, clearMessage, toggleChat } =
   appStateSlice.actions;
 
 export default appStateSlice.reducer;

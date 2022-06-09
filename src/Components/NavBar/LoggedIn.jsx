@@ -9,7 +9,7 @@ export default function LoggedIn() {
   const user = useSelector(selectUser);
   return (
     <>
-      <Nav.Item style={{ padding: ".5rem 1rem",display: "contents",fontSize:"20px"}}><strong>Welcome {user?.email}🐕</strong></Nav.Item>
+      <Nav.Item style={{ padding: ".5rem 1rem",display: "contents",fontSize:"25px"}}><strong>Welcome {user?.name}🐕</strong></Nav.Item>
       <button className="links pixel-borders pixel-box--primary" onClick={() => dispatch(logOut())}>Logout</button>
     </>
   );

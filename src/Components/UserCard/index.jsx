@@ -7,9 +7,9 @@ import {joinRoom, setReceiver, resetChat} from "../../store/chat/slice"
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import * as uuid from "uuid"
 import EditModal from "../Edit Modal";
+import { toggleChat } from "../../store/appState/slice";
 import "./style.css";
 
-// import { Link } from "react-router-dom";
 
 
 export default function UserCard ({ id, name, city, imageUrl, description,rating,owners, isFromProfile}) {
@@ -22,7 +22,10 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
         dispatch(joinRoom(id));
         dispatch(setReceiver(userId));
         dispatch(resetChat());
+        dispatch(toggleChat());
     }
+  
+    
 
     return (
         <div className="userCard">
@@ -56,9 +59,8 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
             }) : (""))
             }) : ("")}
         {token && !isFromProfile ?
-            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id)}>
+            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id) }>
                 Chat
-               
             </button> : ""
         }
 

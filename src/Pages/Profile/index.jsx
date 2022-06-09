@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch} from "react-redux";
 import { selectUser } from "../../store/user/selectors";
 import { fetchProfile } from "../../store/user/thunk";
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 import "./style.css";
 
 export default function Profile(){
@@ -34,6 +36,7 @@ return(
                 isFromProfile={true}
               />
       }
+      <Calendar />
        </div>
     </div>
    
