@@ -1,13 +1,15 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 
-export const sendChatMessage = (room, author, receiver, message, time) => {
+export const sendChatMessage = (room, authorId, authorName, receiverId, receiverName, message, time) => {
     return async (dispatch, getState) => {
       try {
         const response = await axios.post(`${apiUrl}/chat`, {
             room,
-            author,
-            receiver,
+            authorId,
+            authorName,
+            receiverId,
+            receiverName,
             message,
             time,
           });

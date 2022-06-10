@@ -37,11 +37,21 @@ if (room !== null) {
   socket.emit("join_room", room);
 }
 
-const setReceiver = () => {
-  if (receiver) {
-    return receiver;
+const setReceiverId = () => {
+  if (receiver.id) {
+    console.log("RECEIVER: ", receiver)
+    return receiver.id;
   } else {
-    return messages[messages.length-1].receiver === user.id ? messages[messages.length-1].author : messages[messages.length-1].receiver
+    return messages[messages.length-1].receiverId === user.id ? messages[messages.length-1].authorId : messages[messages.length-1].receiverId
+  }
+};
+
+const setReceiverName = () => {
+  if (receiver.name) {
+    console.log("RECEIVER: ", receiver)
+    return receiver.name;
+  } else {
+    return messages[messages.length-1].receiverId === user.id ? messages[messages.length-1].authorName : messages[messages.length-1].receiverName
   }
 };
 
@@ -49,8 +59,10 @@ const sendMessage = async () => {
   if (sendMessage !==""){
     const messageData = {
       room: room,
-      author: user.id,
-      receiver: setReceiver(),
+      authorId: user.id,
+      authorName: user.name,
+      receiverId: setReceiverId(),
+      receiverName: setReceiverName(),
       message: currentMessage,
       authorImage: user.imageUrl,
       time:
@@ -61,7 +73,14 @@ const sendMessage = async () => {
     console.log(messageData)
   // socket.emit("send_message", { currentMessage, room });
     await socket.emit("send_message", messageData);
-    dispatch(sendChatMessage(messageData.room, messageData.author, messageData.receiver, messageData.message, messageData.time));
+    dispatch(sendChatMessage(
+      messageData.room, 
+      messageData.authorId, 
+      messageData.authorName, 
+      messageData.receiverId, 
+      messageData.receiverName,
+      messageData.message, 
+      messageData.time));
     setMessageList((list) => [...list, messageData]);
     setCurrentMessage("");
 
@@ -104,8 +123,10 @@ if (showChat) {
           {messages && messages.map((messageContent) => {
             return (
               <div className='message-row'>
-              <div className="message" id={messageContent.receiver !== user.id ? "you" : "other"}>
-                {messageContent.authorImage && <img src={messageContent.authorImage} width={"80px"} alt={messageContent.author}/>}
+                {messageContent.authorImage && messageContent.authorId !== user.id ? 
+                <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
+              <p>{messageContent.authorId !== user.id ? "" : user.name}</p>
+              <div className="message" id={messageContent.receiverId !== user.id ? "you" : "other"}>
                 <div>
                   <div className="message-meta">
                     <p className= "message-time" id="time">{messageContent.time}</p>
@@ -117,6 +138,9 @@ if (showChat) {
                   </div>
                 </div>
               </div>
+              <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
+                {messageContent.authorImage && messageContent.authorId !== user.id ?
+                <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
               </div>
             );
           })}
@@ -124,9 +148,10 @@ if (showChat) {
            
            return (
              <div className='message-row'>
-               {messageContent.authorImage && <img src={messageContent.authorImage} width={"80px"} alt={messageContent.author}/>}
-              <div className="message" id={messageContent.receiver !== user.id ? "you" : "other"} >
-                
+                {messageContent.authorImage && messageContent.authorId === user.id ? 
+                <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
+              <p>{messageContent.authorId !== user.id ? "" : user.name}</p>
+              <div className="message" id={messageContent.receiverId !== user.id ? "you" : "other"} >
                 <div>
                 <div className="message-meta">
                     <p className= "message-time"id="time">{messageContent.time}</p>
@@ -138,6 +163,9 @@ if (showChat) {
                   
                 </div>
               </div> 
+              <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
+              {messageContent.authorImage && messageContent.authorId !== user.id ?
+                <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
               </div> 
             );
           })}

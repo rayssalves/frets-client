@@ -5,12 +5,8 @@
   background-color: #36AAE4;
   border-top-left-radius: 25px;
 }
-.message-container {
-  max-height: 600px;
-  div:first-child {
-    max-height: 600px;
-    border-radius: 20px;
-  }
+div[class^='react-scroll-to-bottom'] {
+  height: 600px;
 }
 
 .message-meta {
@@ -30,7 +26,7 @@
     font-family: 'VT323', monospace;
     font-size: 40px;
   }
-  
+
   /* The popup chat - hidden by default */
   .chat-popup {
     display: none;
@@ -38,14 +34,14 @@
     bottom: 0;
     right: 15px;
     z-index: 9;
-    border-radius: 25px;
   }
-  
+
   /* Add styles to the form container */
   .form-container {
     width: 500px;
     background-color: white;
     font-family: 'VT323', monospace;
+    border-radius: 25px;
     
   }
   

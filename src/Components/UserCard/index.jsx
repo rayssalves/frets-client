@@ -17,10 +17,10 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
 
     const token = useSelector(selectToken);
     const dispatch = useDispatch();
-    const openChat = (userId) => {
+    const openChat = (userId, userName) => {
         const id = uuid.v4();
         dispatch(joinRoom(id));
-        dispatch(setReceiver(userId));
+        dispatch(setReceiver({receiverId: userId, receiverName: userName}));
         dispatch(resetChat());
         dispatch(toggleChat());
     }
@@ -59,7 +59,7 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
             }) : (""))
             }) : ("")}
         {token && !isFromProfile ?
-            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id) }>
+            <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id, name) }>
                 Chat
             </button> : ""
         }

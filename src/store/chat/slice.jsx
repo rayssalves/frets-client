@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   room: null,
   author: null,
-  receiver: null,
+  receiverId: null,
+  receiverName: null,
   messages: null
 };
 
@@ -15,7 +16,8 @@ export const chatSlice = createSlice({
         state.room = action.payload;
     },
     setReceiver: (state, action) => {
-        state.receiver = action.payload;
+        state.receiverId = action.payload.receiverId;
+        state.receiverName = action.payload.receiverName;
     },
     resetChat: (state, action) => {
         state.messages = null;
