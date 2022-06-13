@@ -20,8 +20,9 @@ const socket = io.connect("http://localhost:4000", {
   }
 });
 
+
 export default function Chat (userId) {
-    // Messages States
+// Messages States
 const [currentMessage, setCurrentMessage] = useState("");
 const [messageList, setMessageList] = useState([]);
 const dispatch = useDispatch();
@@ -37,6 +38,7 @@ if (room !== null) {
   socket.emit("join_room", room);
 }
 
+
 const setReceiverId = () => {
   if (receiver.id) {
     console.log("RECEIVER: ", receiver)
@@ -45,7 +47,7 @@ const setReceiverId = () => {
     return messages[messages.length-1].receiverId === user.id ? messages[messages.length-1].authorId : messages[messages.length-1].receiverId
   }
 };
-
+//showing name
 const setReceiverName = () => {
   if (receiver.name) {
     console.log("RECEIVER: ", receiver)
@@ -69,22 +71,21 @@ const sendMessage = async () => {
         new Date(Date.now()).getHours() +
         ":" +
         new Date(Date.now()).getMinutes(),
-    } 
+    }
     console.log(messageData)
-  // socket.emit("send_message", { currentMessage, room });
+
     await socket.emit("send_message", messageData);
     dispatch(sendChatMessage(
-      messageData.room, 
-      messageData.authorId, 
-      messageData.authorName, 
-      messageData.receiverId, 
+      messageData.room,
+      messageData.authorId,
+      messageData.authorName,
+      messageData.receiverId,
       messageData.receiverName,
-      messageData.message, 
+      messageData.message,
       messageData.time));
     setMessageList((list) => [...list, messageData]);
     setCurrentMessage("");
 
-    // setMessageList([...messageList, messageData]);
   }
   };
 if (showChat) {
@@ -97,12 +98,6 @@ if (showChat) {
   }
 }
 
-
-// useEffect(() => {
-//   socket.on("receive_message", (data) => {
-//     setMessageList((list) => [...list, data]);
-//     });
-//     }, [socket]);
   useEffect(() => {
     socket.on("receive_message", (data) => {
       console.log("HIT")
@@ -119,11 +114,11 @@ if (showChat) {
         <h1 className="chat-title">Chat <MinimizeIcon style={{ color: "#FF9B49",fontSize:35, float: "right"}} onClick={() => dispatch(toggleChat())}/></h1>
         <div className="chat-body">
         <ScrollToBottom className="message-container">
-          
+
           {messages && messages.map((messageContent) => {
             return (
               <div className='message-row'>
-                {messageContent.authorImage && messageContent.authorId !== user.id ? 
+                {messageContent.authorImage && messageContent.authorId !== user.id ?
                 <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
               <p>{messageContent.authorId !== user.id ? "" : user.name}</p>
               <div className="message" id={messageContent.receiverId !== user.id ? "you" : "other"}>
@@ -131,71 +126,61 @@ if (showChat) {
                   <div className="message-meta">
                     <p className= "message-time" id="time">{messageContent.time}</p>
                   </div>
-                  
+
                   <div className="message-content">
-                  
                     <p>{messageContent.message}</p>
                   </div>
                 </div>
               </div>
-              <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
-                {messageContent.authorImage && messageContent.authorId !== user.id ?
-                <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
+                <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
+                  {messageContent.authorImage && messageContent.authorId !== user.id ?
+                  <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
               </div>
             );
           })}
           {messageList.map((messageContent) => {
-           
+
            return (
              <div className='message-row'>
-                {messageContent.authorImage && messageContent.authorId === user.id ? 
+                {messageContent.authorImage && messageContent.authorId === user.id ?
                 <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
               <p>{messageContent.authorId !== user.id ? "" : user.name}</p>
+
               <div className="message" id={messageContent.receiverId !== user.id ? "you" : "other"} >
                 <div>
                 <div className="message-meta">
                     <p className= "message-time"id="time">{messageContent.time}</p>
                   </div>
+
                   <div className="message-content">
-                  
-                    <p>{messageContent.message}</p>
+                  <p>{messageContent.message}</p>
                   </div>
-                  
+
                 </div>
-              </div> 
-              <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
-              {messageContent.authorImage && messageContent.authorId !== user.id ?
+              </div>
+                <p>{messageContent.authorId !== user.id ? messageContent.authorName : ""}</p>
+                {messageContent.authorImage && messageContent.authorId !== user.id ?
                 <img src={messageContent.authorImage} width={"80px"} alt={messageContent.authorName}/> : ""}
-              </div> 
+              </div>
             );
           })}
-
         </ScrollToBottom>
       </div>
       <div className="chat-footer">
-        <input
-          type="text"
+        <input type="text"
           value={currentMessage}
           placeholder="Hey..."
           onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              sendMessage();
-            }
-          }}
-          className="chat-input"
-        />
+          setCurrentMessage(event.target.value);}}
+          onKeyPress={(event) => { if (event.key === "Enter") { event.preventDefault(); sendMessage(); }}}
+          className="chat-input"/>
+
       <SendIcon style={{ color: "#FF9B49",fontSize:40}} onClick={() => sendMessage()}/>
-      <br/>
+          <br/>
       </div>
         </form>
       </div>
       </div>
-
-
   )
 
 };
