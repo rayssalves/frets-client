@@ -58,6 +58,7 @@ export default function UserCard ({ id, name, city, imageUrl, description,rating
                 );
             }) : (""))
             }) : ("")}
+            <br/>
         {token && !isFromProfile ?
             <button className="pixel-borders pixel-borders--2-inset" onClick={() => openChat(id, name) }>
                 Chat
