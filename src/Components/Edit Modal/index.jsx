@@ -49,7 +49,7 @@ export default function EditModal() {
     const [description, setDescription] = useState(user.description);
     const [nameSignUp, setNameSignUp] = useState(user.name);
     const [emailSignUp, setEmailSignUp] = useState(user.email);
-    const [pet, setPet] = useState(user.owners[0].pets[0]);
+    const [pet, setPet] = useState(user.owners ? user.owners[0].pets[0] : null);
 
 
     function submitEditProfile(event) {
@@ -162,7 +162,7 @@ export default function EditModal() {
           />
         </Form.Group> 
 
-          {isOwner &&
+          {(isOwner && user.owners) &&
           <div>
              <Form.Group controlId='formBasicPets'>
              <Form.Label><strong>Name</strong></Form.Label>

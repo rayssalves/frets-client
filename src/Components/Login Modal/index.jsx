@@ -31,11 +31,12 @@ const style = {
     backgroundSize: 'contain',
     position: 'absolute',
     width: '100%',
-    height: '100%',
+    height: '157%',
     opacity: '0.3',
     zIndex: '-1',
     left: '0',
-    top: '0'
+    top: '0',
+    
   }
 
 };

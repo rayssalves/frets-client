@@ -7,8 +7,7 @@ body{
     font-family: 'VT323', monospace;
     font-size: 60px;
     letter-spacing: 7px;
-    text-shadow: 5px 5px #E6A5B7;
-
+    text-shadow: -1px 0  #858FB1, 0 3px  #858FB1, 3px 0 #858FB1, 0 -1px  #858FB1;
 }
 .gif {
     -webkit-animation: mover 5s infinite  alternate;
