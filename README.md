@@ -3,7 +3,7 @@
 <img alt="logo" src="https://user-images.githubusercontent.com/68439707/178267856-5cc81521-12b6-49bf-b002-dd88b0658c25.png" width="200" height="200"/>
 
 
-<h2>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.</h2>
+<p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.<p>
 
 - React
 - JavaScript
