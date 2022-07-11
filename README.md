@@ -3,8 +3,9 @@
 <img alt="logo" src="https://user-images.githubusercontent.com/68439707/178267856-5cc81521-12b6-49bf-b002-dd88b0658c25.png" width="200" height="200"/>
 
 
-<p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.<p>
+<p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.<p>tackt
 
+# Tech Stack
   <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%2320232a.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
   <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
   <img alt="Redux" src="https://img.shields.io/badge/Redux-%2320232a.svg?style=for-the-badge&logo=redux&logoColor=593D88"/>
