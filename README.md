@@ -6,4 +6,5 @@
 - scss
 - Redux Toolkit
 
+![home](https://user-images.githubusercontent.com/68439707/178264950-d059a141-a2f9-4d2a-adb3-c0e27107e804.gif)
 
