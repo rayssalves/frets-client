@@ -14,6 +14,9 @@ helping with dog care.</p>
 <p>Home Page </p>
 <img alt="home" src="https://user-images.githubusercontent.com/68439707/178264950-d059a141-a2f9-4d2a-adb3-c0e27107e804.gif"/>
 
+<p>Login</p>
+<img alt="login" src="https://user-images.githubusercontent.com/68439707/178269838-60b27928-0b41-4aeb-9b6d-e4f700b0b018.png"/>
+
 
 <p>Edit profile </p>
 <img alt="edit profile" src="https://user-images.githubusercontent.com/68439707/178265791-9e11b76d-d2e1-48c8-81c0-c589a4c34f15.png"/>
