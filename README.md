@@ -1,5 +1,5 @@
 # Frets
-<img alt="logo" src="https://user-images.githubusercontent.com/68439707/178267856-5cc81521-12b6-49bf-b002-dd88b0658c25.png"width="200" height="200"/>
+<img alt="logo" src="https://user-images.githubusercontent.com/68439707/178267856-5cc81521-12b6-49bf-b002-dd88b0658c25.png" "width="200" height="200"/>
 
 
 <p>Project created to connect pet lovers with pet owners and establish a community around ![Uploading logo frets.png…]()
