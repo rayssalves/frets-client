@@ -15,7 +15,3 @@
 <p>Live Chat </p>
 ![Screenshot from 2022-07-11 14-30-35](https://user-images.githubusercontent.com/68439707/178266231-84c6978a-f0e7-4018-8e02-1b4cb2abc94b.png)
 
-
-<p>Frets logo made with Figma</p>
-
-![logo frets](https://user-images.githubusercontent.com/68439707/178266668-213ed262-2573-47f1-8f2a-18e44b99e0be.png)
