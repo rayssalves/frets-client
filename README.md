@@ -5,12 +5,14 @@
 
 <p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.</p>
 
-#Tech Stack
+# Tech Stack
+
   
   <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%2320232a.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
   <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
   <img alt="Redux" src="https://img.shields.io/badge/Redux-%2320232a.svg?style=for-the-badge&logo=redux&logoColor=593D88"/>
   <img alt="CSS3" src="https://img.shields.io/badge/css3-%2320232a.svg?style=for-the-badge&logo=css3&logoColor=blue"/>
+
 
 <p>Home Page </p>
 <img alt="home" src="https://user-images.githubusercontent.com/68439707/178264950-d059a141-a2f9-4d2a-adb3-c0e27107e804.gif"/>
