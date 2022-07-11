@@ -3,7 +3,7 @@
 <img alt="logo" src="https://user-images.githubusercontent.com/68439707/178267856-5cc81521-12b6-49bf-b002-dd88b0658c25.png" width="200" height="200"/>
 
 
-<p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.</p>
+<h2>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.</h2>
 
 # Tech Stack
 <p>
@@ -13,7 +13,7 @@
   <img alt="CSS3" src="https://img.shields.io/badge/css3-%2320232a.svg?style=for-the-badge&logo=css3&logoColor=blue"/>
 </p>
 
-<a href="https://github.com/tikhomyrova-tetiana/tamagotchi_club_backend">Link</a> to back-end repository
+<a href="https://github.com/rayssalves/frets-server">Link</a> to back-end repository
 
 <p>Home Page </p>
 <img alt="home" src="https://user-images.githubusercontent.com/68439707/178264950-d059a141-a2f9-4d2a-adb3-c0e27107e804.gif"/>
