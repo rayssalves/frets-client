@@ -9,7 +9,7 @@
   <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
   <img alt="Redux" src="https://img.shields.io/badge/Redux-%2320232a.svg?style=for-the-badge&logo=redux&logoColor=593D88"/>
   <img alt="CSS3" src="https://img.shields.io/badge/css3-%2320232a.svg?style=for-the-badge&logo=css3&logoColor=blue"/>
-   https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
+  <img src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white"/>
 </p>
 
 <a href="https://github.com/rayssalves/frets-server">Link</a> to back-end repository
