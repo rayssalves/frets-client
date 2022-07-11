@@ -5,7 +5,7 @@
 
 <p>Project created to connect pet lovers with pet owners and establish a community around helping with dog care.<p>tackt
 
-# Tech Stack
+<h2>Tech Stack</h2>
   
   <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%2320232a.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
   <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
